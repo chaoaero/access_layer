@@ -25,6 +25,12 @@ local req_signature = ngx.header["X-Signature"]
 
 if req_method == "POST" then
     req_args = ngx.req.get_post_args()
+    for k, v in pairs(ngx.req.get_uri_args()) do
+        req_args[k] = v
+    end
+   -- for k, v in pairs(ngx.req.get_post_args()) do
+   --     ngx.say(k,v)
+   -- end
 else
     req_args = ngx.req.get_uri_args()
 end
